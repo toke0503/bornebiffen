@@ -1,28 +1,29 @@
 ---
+import Logo from '../assets/images/logo.svg?url';
+import Lup from '../assets/images/lup.svg?url';
+import Laas from '../assets/images/laas.svg?url';
 const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname.slice(1); // remove the first "/"
 ---
-<header x-data="{ showmenu: false }" class="" >
-    <div id="navbar" class="container mx-auto p-4 flex flex-row justify-between items-center">
-        <div id="logo" class="">
-            <a href="#" class="font-display text-4xl">Astro-Tailwind starter - udvidet udgave E25</a>
+
+<header class="bg-white">
+    <div class="w-full px-4 sm:px-6 lg:px-12 py-6 flex items-center justify-between">
+        <div class="flex items-start gap-4">
+            <a href="/" class="block">
+                <img src={Logo} alt="Børnebiffen logo" class="h-14 md:h-16" />
+            </a>
+            <div class="hidden sm:flex flex-col justify-center">
+            </div>
         </div>
-        <nav id="desktopmenu" class="hidden lg:block">
-            <ul class="flex flex-row gap-4">
-                <li class=""><a href="/" class={currentPath === "" ? "italic font-bold" : "italic"}>Forside</a></li><!-- alternativt: lav et <a href="">Link</a>, hvis du ikke vil bruge Link.astro komponenten -->
-                <li class=""><a href="/komponentbibliotek/" class={currentPath === "komponentbibliotek/" ? "italic font-bold" : "italic"}>Komponentbibliotek</a></li>
-            </ul>
-        </nav>
-        <button id="burgermenu" class="lg:hidden" x-on:click="showmenu = ! showmenu"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-</svg>
-</button>
+
+        <div class="flex items-center gap-4">
+            <button aria-label="Søg" class="w-12 h-12 rounded-full bg-blaa flex items-center justify-center hover:opacity-90">
+                <img src={Lup} alt="Søg" class="w-6 h-6" />
+            </button>
+            <button type="button" class="inline-flex items-center gap-2 bg-blaa text-white px-5 h-12 rounded-full hover:opacity-95">
+                <img src={Laas} alt="Log ind" class="w-6 h-6" />
+                <span class="font-heading font-medium text-base leading-none">Log ind</span>
+            </button>
+        </div>
     </div>
-    <nav id="mobilmenu" class="flex flex-col content-center" 
-    x-show="showmenu" x-transition x-on:click="showmenu = false" x-on:click.outside="showmenu = false">
-        <ul class="border-t-2 border-b-2 border-black">
-            <li class="text-center py-2"><a href="/" class={currentPath === "" ? "italic font-bold" : "italic"}>Forside</a></li>
-            <li class="text-center py-2"><a href="/komponentbibliotek/" class={currentPath === "komponentbibliotek/" ? "italic font-bold" : "italic"}>Komponentbibliotek</a></li>
-        </ul>
-    </nav>
 </header>

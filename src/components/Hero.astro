@@ -1,0 +1,145 @@
+---
+import Logo from '../assets/images/logo.svg?url';
+import Vitello from '../assets/images/vitello.png?url';
+import Elefant from '../assets/images/elefant.png?url';
+import Pip from '../assets/images/pip.png?url';
+import Lillefinger from '../assets/images/lillefinger.png?url';
+import Raeven from '../assets/images/raeven.png?url';
+import Kroko from '../assets/images/kroko.png?url';
+import Cirkeline from '../assets/images/cirkeline.png?url';
+import Kanino from '../assets/images/kanino.png?url';
+import Psykogris from '../assets/images/psykogris.png?url';
+---
+
+<section class="hero relative overflow-hidden w-screen">
+  <div class="hero-inner relative w-screen h-[520px] md:h-[560px] lg:h-[720px] overflow-hidden">
+    <!-- decorative characters positioned around the edges -->
+    <!-- left large face (Vitello) cropped at left edge (behind other left figures) -->
+      <img src={Vitello} alt="Vitello" class="absolute pointer-events-none left-[-145px] top-[348px] z-0 img-vitello" />
+    <!-- small characters grouped near top-left -->
+    <img src={Pip} alt="Pip" class="absolute pointer-events-none left-[-40px] top-[50px] z-20 img-pip" />
+    <img src={Cirkeline} alt="Cirkeline" class="absolute pointer-events-none left-[183px] top-[-73px] opacity-90 z-20 img-cirkeline" />
+    <!-- crocodile near bottom-left (above Vitello, behind logo) -->
+      <img src={Kroko} alt="Krokodille" class="absolute pointer-events-none left-[107px] top-[398px] z-10 img-kroko" />
+
+    <!-- right side characters: large finger (foreground), wolf and small rabbits -->
+    <img src={Lillefinger} alt="Lillefinger" class="absolute pointer-events-none -right-20 bottom-0 z-10 img-lillefinger" />
+      <img src={Raeven} alt="Ræven" class="absolute pointer-events-none -right-70 bottom-75 z-30 img-raeven" />
+      <img src={Kanino} alt="Kanino" class="absolute pointer-events-none right-36 -top-50 z-30 img-kanino" />
+      <img src={Elefant} alt="Elefant" class="absolute pointer-events-none right-80 -bottom-30 z-5 opacity-0 sm:opacity-100 img-elefant" />
+
+    <!-- centered logo + tagline (logo above the bottom gradient) -->
+    <div class="absolute inset-0 flex flex-col items-center justify-center z-40 transition-all duration-300 hero-content">
+      <img src={Logo} alt="Børnebiffen" class="logo transition-transform duration-300" />
+    </div>
+
+    <!-- subtle bottom gradient box that sits above characters and blends into .bg-blaa -->
+    <div class="absolute left-0 right-0 transition-opacity duration-300 pointer-events-none hero-bottom-fade" style="z-index:30;"></div>
+  </div>
+
+  <style>
+    .hero { background-color: #CCF2FF; }
+    /* smoother back-ease animation for transforms and opacity (500ms) */
+    .hero-inner img { image-rendering: optimizeQuality; transition: transform 500ms cubic-bezier(.68,-0.55,.27,1.55), opacity 500ms cubic-bezier(.68,-0.55,.27,1.55); transform-origin: center center; }
+    .hero:hover .logo { transform: translateY(-8px) scale(1.16); }
+    .hero:hover .hero-content p { color: rgba(89,210,224,1); }
+    /* bottom fade box styles (placed under logo, above characters) */
+    .hero-bottom-fade { bottom: 0; height: 100px; background: linear-gradient(180deg, transparent 0%, var(--color-bg) 100%);} 
+    .hero:hover .hero-bottom-fade { background: linear-gradient(180deg, transparent 0%, var(--color-bg) 100%); }
+    @media (min-width:768px) { .hero-bottom-fade { height: 140px; } }
+    @media (min-width:1024px) { .hero-bottom-fade { height: 180px; } }
+
+    /* responsive tweaks */
+    @media (max-width:1024px){
+      .hero-inner { height: 520px; }
+      .hero img[alt="Vitello"] { left: -100px; }
+      .hero img[alt="Lillefinger"] { right: -80px; }
+      /* On tablet, hide non-essential characters to reduce clutter
+         Keep: Vitello, Pip, Lillefinger, Raeven */
+      .img-cirkeline,
+      .img-kroko,
+      .img-kanino,
+      .img-elefant {
+        display: none;
+      }
+    }
+    @media (max-width:640px){
+      .hero-inner { height: 420px; }
+      /* Vitello should sit under Pip on mobile (same left) */
+      .hero img[alt="Vitello"] { left: -40px; top: 160px; }
+      /* Lillefinger moved a bit back toward center */
+      .hero img[alt="Lillefinger"] { right: -40px; bottom: 0; }
+      .hero img[alt="Krokodille"] { left: -20px; bottom: 8px; }
+    }
+
+    /* Hover: scale and tiny rotate for characters (left rotate clockwise, right rotate counter-clockwise)
+       include translateY(var(--ty)) so tablet translate vars are preserved when hovering */
+    .hero:hover .img-vitello,
+    .hero:hover .img-pip,
+    .hero:hover .img-cirkeline,
+    .hero:hover .img-kroko {
+      transform: translateY(var(--ty)) scale(1.12) rotate(6deg);
+    }
+    .hero:hover .img-lillefinger,
+    .hero:hover .img-raeven,
+    .hero:hover .img-kanino,
+    .hero:hover .img-elefant {
+      transform: translateY(var(--ty)) scale(1.12) rotate(-6deg);
+    }
+    /* reduce rotation on small screens to avoid overlap */
+    @media (max-width:640px){
+      .hero:hover .img-vitello,
+      .hero:hover .img-pip,
+      .hero:hover .img-cirkeline,
+      .hero:hover .img-kroko,
+      .hero:hover .img-lillefinger,
+      .hero:hover .img-raeven,
+      .hero:hover .img-kanino,
+      .hero:hover .img-elefant {
+        transform: translateY(var(--ty)) scale(1.06) rotate(3deg);
+      }
+      .hero:hover .img-lillefinger,
+      .hero:hover .img-raeven,
+      .hero:hover .img-kanino,
+      .hero:hover .img-elefant {
+        transform: translateY(var(--ty)) scale(1.06) rotate(-3deg);
+      }
+    }
+
+    /* proportional scaling helpers: define lg base widths and scale down for md/sm */
+    .img-vitello { --lg-w: 360px; --ty: 0; width: var(--lg-w); height: auto; transform: translateY(var(--ty)); }
+    .img-pip { --lg-w: 400px; --ty: 0; width: var(--lg-w); height: auto; transform: translateY(var(--ty)); }
+    .img-cirkeline { --lg-w: 640px; --ty: 0; width: var(--lg-w); height: auto; transform: translateY(var(--ty)); }
+    .img-kroko { --lg-w: 500px; --ty: 0; width: var(--lg-w); height: auto; transform: translateY(var(--ty)); }
+    .img-lillefinger { --lg-w: 350px; --ty: 0; width: var(--lg-w); height: auto; transform: translateY(var(--ty)); }
+    .img-raeven { --lg-w: 900px; --ty: 0; width: var(--lg-w); height: auto; transform: translateY(var(--ty)); }
+    .img-kanino { --lg-w: 640px; --ty: 0; width: var(--lg-w); height: auto; transform: translateY(var(--ty)); }
+    .img-elefant { --lg-w: 420px; --ty: 0; width: var(--lg-w); height: auto; transform: translateY(var(--ty)); }
+    .logo { --lg-w: 830px; --ty: 0; width: var(--lg-w); height: auto; transform: translateY(var(--ty)); }
+
+    @media (max-width:1024px){
+      .img-vitello, .img-pip, .img-cirkeline, .img-kroko, .img-lillefinger, .img-raeven, .img-kanino, .img-elefant, .logo {
+        width: calc(var(--lg-w) * 0.75);
+      }
+      /* Tablet: nudge specific characters vertically using CSS var --ty
+        Increased values for a much more pronounced shift (permanent, not hover-only) */
+      .img-vitello { --ty: -72px; }
+      .img-pip { --ty: -48px; }
+      .img-raeven { --ty: 60px; }
+      .img-lillefinger { --ty: 66px; }
+    }
+    @media (max-width:640px){
+      .img-vitello, .img-pip, .img-cirkeline, .img-kroko, .img-lillefinger, .img-raeven, .img-kanino, .img-elefant, .logo {
+        width: calc(var(--lg-w) * 0.5);
+      }
+      /* Mobile adjustments: hide Ræven, make Lillefinger larger and lift it up, push Vitello down */
+      .img-raeven { display: none; }
+      /* Make Lillefinger slightly smaller and move back toward center, lift it slightly */
+      .img-lillefinger { width: calc(var(--lg-w) * 0.55); --ty: -120px; }
+      /* Place Vitello under Pip using top/left instead of extra translate */
+      .img-vitello { --ty: 0; }
+      /* Nudge Pip slightly higher on mobile */
+      .img-pip { --ty: -72px; }
+    }
+  </style>
+</section>
