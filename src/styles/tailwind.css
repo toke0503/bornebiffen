@@ -51,14 +51,54 @@
     font-weight: 400;
     font-style: normal;
   }
+  /* Global H2 sizes (mobile-first):
+     - mobile: 20px (1.25rem)
+     - tablet (min-width:768px): 32px (2rem)
+     - desktop (min-width:1024px): 64px (4rem)
+     All h2 elements should use these sizes; local text-size utilities for h2 should be removed. */
+  h2 {
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.1;
+  }
+  @media (min-width: 768px) {
+    h2 {
+      font-size: 2rem; /* 32px */
+    }
+  }
+  @media (min-width: 1024px) {
+    h2 {
+      font-size: 4rem; /* 64px */
+    }
+  }
   /* Page background color for all pages */
   body {
     background-color: var(--color-bg);
     overflow-x: hidden;
   }
+  /* Ensure the root html fills the viewport width to avoid visual gaps */
+  html {
+    width: 100%;
+  }
 }
 
 @layer components {
+  /* Ensure the cards carousel can become full-bleed (edge-to-edge) when requested.
+     This moves the carousel to the viewport edges and removes container padding. */
+  .cards-row .carousel {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box;
+  }
+  .cards-row .carousel-item {
+    scroll-snap-align: center;
+    flex: 0 0 auto;
+  }
 }
 
 @layer utilities {

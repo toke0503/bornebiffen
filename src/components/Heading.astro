@@ -17,4 +17,6 @@ const fontClasses = {
 "serif": "font-serif",
 };
 ---
-<Htmlheading class:list={[stylingclasses, sizeClasses[size], fontClasses[font]]}><slot /></Htmlheading>
+// If this component renders an <h2>, skip local text-size classes so global h2 sizing applies.
+const appliedSize = Htmlheading === 'h2' ? '' : sizeClasses[size];
+<Htmlheading class:list={[stylingclasses, appliedSize, fontClasses[font]]}><slot /></Htmlheading>
