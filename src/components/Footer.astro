@@ -6,15 +6,11 @@ import fs from '../assets/images/fs.png';
 <footer class="footer">
     <div class="footer-content">
         <div class="footer-left">
-                        <div class="footer-title" style="display: flex; align-items: center;">
-                            <img src={logo.src} alt="Børnebiffen logo" style="height: 7rem; width: auto;" />
-                        </div>
-                        
-            
+            <img src={logo.src} alt="Børnebiffen logo" style="height: 7rem; width: auto; margin-left: 0;" />
             <nav class="footer-nav">
-                    <h3 class="footer-nav-title">
-                      <img src={fs.src} alt="Filmstriben logo" style="height: 2.5rem; width: auto;" />
-                    </h3>
+                <h3 class="footer-nav-title">
+                    <img src={fs.src} alt="Filmstriben logo" style="height: 2.5rem; width: auto; margin-left: 0;" />
+                </h3>
                 <ul class="footer-links">
                     <li><a href="#" class="footer-link">Om Børnebiffen</a></li>
                     <li><a href="#" class="footer-link">Tilgængelighedserklæring</a></li>
@@ -24,10 +20,8 @@ import fs from '../assets/images/fs.png';
                 </ul>
             </nav>
         </div>
-        
         <div class="footer-right">
-                <img src={AllePopkorn} alt="Popkorn karakterer" class="footer-image" />
-    
+            <img src={AllePopkorn} alt="Popkorn karakterer" class="footer-image" />
         </div>
     </div>
 </footer>
@@ -37,8 +31,6 @@ import fs from '../assets/images/fs.png';
         background-color: #6B9CAC;
         color: white;
         padding: 3rem 0 2rem;
-        position: relative;
-        overflow: hidden;
         font-family: 'Sausage', var(--font-heading, sans-serif);
     }
 
@@ -58,28 +50,8 @@ import fs from '../assets/images/fs.png';
         gap: 2rem;
     }
 
-    .footer-title {
-        font-family: 'Sausage', var(--font-heading, sans-serif);
-        font-size: clamp(2rem, 5vw, 3.5rem);
-        font-weight: 700;
-        margin: 0;
-        line-height: 1;
-        text-transform: uppercase;
-    }
-
-    .footer-subtitle {
-        font-family: 'Sausage', var(--font-heading, sans-serif);
-        font-size: clamp(1rem, 2vw, 1.25rem);
-        margin: -1rem 0 0 0;
-        opacity: 0.9;
-    }
-
     .footer-nav-title {
-        font-family: 'Sausage', var(--font-heading, sans-serif);
-        font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-        font-weight: 700;
         margin: 0 0 1rem 0;
-        letter-spacing: 0.05em;
     }
 
     .footer-links {
@@ -92,10 +64,8 @@ import fs from '../assets/images/fs.png';
     }
 
     .footer-link {
-        font-family: 'Sausage', var(--font-heading, sans-serif);
-        color: white;
+        color: var(--color-blaa);
         text-decoration: underline;
-        font-size: clamp(0.95rem, 1.8vw, 1.15rem);
         font-weight: 500;
         transition: opacity 0.2s ease;
     }
@@ -118,35 +88,15 @@ import fs from '../assets/images/fs.png';
     }
 
     @media (max-width: 1024px) {
-        .footer-content {
-            gap: 2rem;
-        }
-
-        .footer-left {
-            gap: 1.5rem;
-        }
-
-        .footer-image {
-            max-width: 400px;
-        }
+        .footer-content { gap: 2rem; }
+        .footer-left { gap: 1.5rem; }
+        .footer-image { max-width: 400px; }
     }
 
     @media (max-width: 640px) {
-        .footer {
-            padding: 2rem 0 1.5rem;
-        }
-
-        .footer-content {
-            padding: 0 1.5rem;
-            gap: 1.5rem;
-        }
-
-        .footer-left {
-            gap: 1rem;
-        }
-
-        .footer-image {
-            max-width: 280px;
-        }
+        .footer { padding: 2rem 0 1.5rem; }
+        .footer-content { padding: 0 1.5rem; gap: 1.5rem; }
+        .footer-left { gap: 1rem; }
+        .footer-image { max-width: 280px; }
     }
 </style>

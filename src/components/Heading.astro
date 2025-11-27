@@ -19,4 +19,4 @@ const fontClasses = {
 ---
 // If this component renders an <h2>, skip local text-size classes so global h2 sizing applies.
 const appliedSize = Htmlheading === 'h2' ? '' : sizeClasses[size];
-<Htmlheading class:list={[stylingclasses, appliedSize, fontClasses[font]]}><slot /></Htmlheading>
+<Htmlheading class:list={[stylingclasses, fontClasses[font]]}><slot /></Htmlheading>

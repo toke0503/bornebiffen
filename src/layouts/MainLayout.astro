@@ -4,6 +4,7 @@ import Footer from "../components/Footer.astro";
 import '../styles/tailwind.css';
 const { title } = Astro.props;
 ---
+<!DOCTYPE html>
 <html lang="da">
 	<head>
 		<meta charset="utf-8" />
@@ -14,13 +15,59 @@ const { title } = Astro.props;
 		<link rel="stylesheet" href="https://use.typekit.net/eyl6wdg.css">
 		<script defer src="https://unpkg.com/tailwindcss-intersect@2.x.x/dist/observer.min.js"></script>
 	</head>
-	<body class="" style="overflow-x: hidden;">
+	<body style="overflow-x: hidden; margin: 0; padding: 0;">
 		
 		<Header></Header>
 		
 		<slot />
 
 		<Footer></Footer>
-			
+		
+		<style is:global>
+			/* Typografi konsistens - alle størrelser i rem */
+			h2 {
+				font-family: 'Sausage', var(--font-heading, sans-serif);
+				font-size: 1rem; /* 16px mobile */
+			}
+			@media (min-width: 768px) {
+				h2 { font-size: 2rem; } /* 32px tablet */
+			}
+			@media (min-width: 1024px) {
+				h2 { font-size: 4rem; } /* 64px desktop */
+			}
+
+			h3 {
+				font-family: 'Sausage', var(--font-heading, sans-serif);
+				font-size: 0.625rem; /* 10px mobile */
+			}
+			@media (min-width: 768px) {
+				h3 { font-size: 1rem; } /* 16px tablet */
+			}
+			@media (min-width: 1024px) {
+				h3 { font-size: 1.25rem; } /* 20px desktop */
+			}
+
+			p {
+				font-family: 'Sausage', var(--font-heading, sans-serif);
+				font-size: 0.5rem; /* 8px mobile */
+			}
+			@media (min-width: 768px) {
+				p { font-size: 0.625rem; } /* 10px tablet */
+			}
+			@media (min-width: 1024px) {
+				p { font-size: 0.9375rem; } /* 15px desktop */
+			}
+
+			.p2 {
+				font-family: 'Sausage', var(--font-heading, sans-serif);
+				font-size: 0.5rem; /* 8px mobile */
+			}
+			@media (min-width: 768px) {
+				.p2 { font-size: 0.625rem; } /* 10px tablet */
+			}
+			@media (min-width: 1024px) {
+				.p2 { font-size: 0.875rem; } /* 14px desktop */
+			}
+		</style>
 	</body>
 </html>
