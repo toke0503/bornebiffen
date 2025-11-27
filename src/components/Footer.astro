@@ -1,7 +1,138 @@
 ---
+import AllePopkorn from '../assets/images/allepopkorn.png?url';
 ---
-<footer class="bg-primary-500 text-white">
-    <div class="container mx-auto p-4">
-        <p>&copy; 2025</p>
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-left">
+            <h2 class="footer-title">BØRNEBIFFEN</h2>
+            <p class="footer-subtitle">Se kortfilm med de yngste</p>
+            
+            <nav class="footer-nav">
+                <h3 class="footer-nav-title">***FILMSTRIBEN</h3>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Om Børnebiffen</a></li>
+                    <li><a href="#" class="footer-link">Tilgængelighedserklæring</a></li>
+                    <li><a href="#" class="footer-link">Cookies</a></li>
+                    <li><a href="#" class="footer-link">Privatlivspolitik</a></li>
+                    <li><a href="#" class="footer-link">Kontakt Os</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <div class="footer-right">
+            <img src={AllePopkorn} alt="Popkorn karakterer" class="footer-image" />
+        </div>
     </div>
 </footer>
+
+<style>
+    .footer {
+        background-color: #6B9CAC;
+        color: white;
+        padding: 3rem 0 2rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .footer-left {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .footer-title {
+        font-family: var(--font-heading, sans-serif);
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 700;
+        margin: 0;
+        line-height: 1;
+        text-transform: uppercase;
+    }
+
+    .footer-subtitle {
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        margin: -1rem 0 0 0;
+        opacity: 0.9;
+    }
+
+    .footer-nav-title {
+        font-family: var(--font-heading, sans-serif);
+        font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+        font-weight: 700;
+        margin: 0 0 1rem 0;
+        letter-spacing: 0.05em;
+    }
+
+    .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .footer-link {
+        color: white;
+        text-decoration: underline;
+        font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+        font-weight: 500;
+        transition: opacity 0.2s ease;
+    }
+
+    .footer-link:hover {
+        opacity: 0.8;
+    }
+
+    .footer-right {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .footer-image {
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+        object-fit: contain;
+    }
+
+    @media (max-width: 1024px) {
+        .footer-content {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .footer-right {
+            justify-content: center;
+        }
+
+        .footer-image {
+            max-width: 400px;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .footer {
+            padding: 2rem 0 1.5rem;
+        }
+
+        .footer-content {
+            padding: 0 1.5rem;
+        }
+
+        .footer-image {
+            max-width: 300px;
+        }
+    }
+</style>

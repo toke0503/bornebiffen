@@ -7,8 +7,13 @@ import Text from "../components/Text.astro";
 import Button from "../components/Button.astro";
 import Hero from "../components/Hero.astro";
 import RundeCard from "../components/RundeCard.astro";
+import FirkantCard from "../components/FirkantCard.astro";
 import BaggrundSky from '../assets/images/baggrundsblaasky.png?url';
 import BlaaPopkorn from '../assets/images/blaapopkorn.png?url';
+import RodBaggrundSky from '../assets/images/rodbaggrundssky.png?url';
+import RodPopkorn from '../assets/images/rodpopkornmand.png?url';
+import LillaBaggrundSky from '../assets/images/lillabaggrundssky.png?url';
+import LillaPopkorn from '../assets/images/lillapopkorn.png?url';
 import Vitello from '../assets/images/vitello.png?url';
 import Pip from '../assets/images/pip.png?url';
 import Lillefinger from '../assets/images/lillefinger.png?url';
@@ -16,6 +21,12 @@ import Raeven from '../assets/images/raeven.png?url';
 import VitelloCard from '../assets/images/vitellocard.png?url';
 import PipCard from '../assets/images/pipungernecard.png?url';
 import LillefingerCard from '../assets/images/lillefingercard.png?url';
+import CirckelineFirkant from '../assets/images/cirkelinefirkant.png?url';
+import Cirkeline2Firkant from '../assets/images/cirkeline2firkant.png?url';
+import VitelloFirkant from '../assets/images/vitellofirkant.png?url';
+import JulemandenFirkant from '../assets/images/julemandenfirkant.png?url';
+import SnemandfFirkant from '../assets/images/snemandfirkant.png?url';
+import PrikFirkant from '../assets/images/prikfirkant.png?url';
 
 const cards = [
 	{ title: 'Vitello', img: Vitello, bg: VitelloCard },
@@ -24,6 +35,16 @@ const cards = [
 ];
 // create 12 placeholders by repeating the `cards` array
 const placeholders = Array.from({ length: 12 }, (_, i) => cards[i % cards.length]);
+
+const firkantCards = [
+	{ title: 'CIRKELINE: HØJT FRA TRÆETS GRØNNE', duration: '14 MIN', img: CirckelineFirkant },
+	{ title: 'VITELLO KØBER EN JULEGAVE', duration: '5 MIN', img: VitelloFirkant },
+	{ title: 'JAGTEN PÅ JULEMANDEN', duration: '27 MIN', img: JulemandenFirkant },
+	{ title: 'CIRKELINE: KLODSMUS:', duration: '13 MIN', img: Cirkeline2Firkant },
+	{ title: 'PRIK OG PLET OG DEN MAGISKE', duration: '7 MIN', img: PrikFirkant },
+	{ title: 'SNEMANDEN', duration: '25 MIN', img: SnemandfFirkant }
+];
+const firkantPlaceholders = Array.from({ length: 12 }, (_, i) => firkantCards[i % firkantCards.length]);
 ---
 <MainLayout title="Titel">
 	<Hero />
@@ -55,6 +76,62 @@ const placeholders = Array.from({ length: 12 }, (_, i) => cards[i % cards.length
 	</section>
 	</div>
 
+	<!-- Pink section with rectangular cards -->
+	<div class="firkantcards-wrapper" style={`background-image: url(${RodBaggrundSky})`}>
+		<section class="firkantcards-section relative w-full">
+			<h2 class="firkantcards-title font-heading">JUL</h2>
+
+			<!-- 12-column grid container (full viewport width) -->
+			<div class="firkant-grid">
+				<!-- Popcorn: columns 1-2 -->
+				<div class="firkant-popcorn-cell">
+					<img src={RodPopkorn} alt="Rød popcorn" class="firkant-popcorn-img" />
+				</div>
+
+				<!-- Carousel: columns 3-12 -->
+				<div class="firkant-carousel-cell">
+					<div class="firkant-carousel-wrapper">
+						<div class="firkant-carousel">
+							{firkantPlaceholders.map((card) => (
+								<div class="firkant-carousel-item">
+									<FirkantCard title={card.title} duration={card.duration} img={card.img} />
+								</div>
+							))}
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- Purple section with rectangular cards (Eventyr) -->
+	<div class="eventyrcards-wrapper" style={`background-image: url(${LillaBaggrundSky})`}>
+		<section class="eventyrcards-section relative w-full">
+			<h2 class="eventyrcards-title font-heading">EVENTYR</h2>
+
+			<!-- 12-column grid container (full viewport width) -->
+			<div class="eventyr-grid">
+				<!-- Popcorn: columns 1-2 -->
+				<div class="eventyr-popcorn-cell">
+					<img src={LillaPopkorn} alt="Lilla popcorn" class="eventyr-popcorn-img" />
+				</div>
+
+				<!-- Carousel: columns 3-12 -->
+				<div class="eventyr-carousel-cell">
+					<div class="eventyr-carousel-wrapper">
+						<div class="eventyr-carousel">
+							{firkantPlaceholders.map((card) => (
+								<div class="eventyr-carousel-item">
+									<FirkantCard title={card.title} duration={card.duration} img={card.img} color="#6B4A7E" />
+								</div>
+							))}
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
 		<style>
 			.rundecards-wrapper {
 				background-position: start end;
@@ -64,6 +141,7 @@ const placeholders = Array.from({ length: 12 }, (_, i) => cards[i % cards.length
 				width: 100%;
 				padding: 4rem 0;
 				margin-bottom: 3rem;
+				overflow: visible;
 			}
 			@media (min-width:768px) { 
 				.rundecards-wrapper { 
@@ -175,6 +253,248 @@ const placeholders = Array.from({ length: 12 }, (_, i) => cards[i % cards.length
 			}
 
 			.carousel-item {
+				flex: 0 0 auto;
+				scroll-snap-align: center;
+			}
+
+			/* Pink section with rectangular cards */
+			.firkantcards-wrapper {
+				background-position: right center;
+				background-repeat: no-repeat;
+				background-size: contain;
+				position: relative;
+				width: 100%;
+				padding: 4rem 0;
+				margin-bottom: 3rem;
+				overflow: visible;
+			}
+
+
+			@media (min-width:768px) { 
+				.firkantcards-wrapper { 
+					padding: 6rem 0;
+					margin-bottom: 4rem;
+				} 
+			}
+			@media (min-width:1024px) { 
+				.firkantcards-wrapper { 
+					padding: 8rem 0;
+					margin-bottom: 5rem;
+				} 
+			}
+
+			.firkantcards-section { 
+				background-color: #E8A5B8; /* pink */
+				overflow: visible;
+				padding: 3rem 0;
+				box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+			}
+
+			.firkantcards-title {
+				letter-spacing: 2px;
+				color: #E8A5B8;
+				position: absolute;
+				left: 1.5rem;
+				top: -1.7rem;
+				z-index: 40;
+				white-space: nowrap;
+				display: inline-block;
+				max-width: calc(100vw - 2rem);
+				font-size: clamp(1.25rem, 6.5vw, 2rem);
+			}
+			@media (min-width:768px) { 
+				.firkantcards-title { 
+					left: 3rem;
+					top: -1.7rem; 
+				} 
+			}
+			@media (min-width:1024px) { 
+				.firkantcards-title { 
+					top: -3.6rem; 
+					font-size: 4rem; 
+				} 
+			}
+
+			.firkant-grid {
+				display: grid;
+				grid-template-columns: repeat(12, 1fr);
+				gap: 0;
+				align-items: center;
+				width: 100vw;
+			}
+
+			.firkant-popcorn-cell {
+				grid-column: 1 / 3;
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+				position: relative;
+				z-index: 10;
+			}
+
+			.firkant-popcorn-img {
+				width: 100%;
+				height: auto;
+				min-width: 180px;
+				max-width: 350px;
+			}
+			@media (min-width:768px) { 
+				.firkant-popcorn-img { 
+					min-width: 220px;
+				} 
+			}
+			@media (min-width:1024px) { 
+				.firkant-popcorn-img { 
+					min-width: 280px;
+				} 
+			}
+
+			.firkant-carousel-cell {
+				grid-column: 3 / 13;
+				position: relative;
+			}
+
+			.firkant-carousel-wrapper {
+				position: relative;
+			}
+
+			.firkant-carousel {
+				display: flex;
+				gap: 2rem;
+				overflow-x: auto;
+				scroll-snap-type: x mandatory;
+				scroll-behavior: smooth;
+				-webkit-overflow-scrolling: touch;
+				scrollbar-width: none;
+				-ms-overflow-style: none;
+				padding: 1rem 2rem 1rem 1rem;
+			}
+
+			.firkant-carousel::-webkit-scrollbar {
+				display: none;
+			}
+
+			.firkant-carousel-item {
+				flex: 0 0 auto;
+				scroll-snap-align: center;
+			}
+
+			/* Purple section with rectangular cards (Eventyr) */
+			.eventyrcards-wrapper {
+				background-position: center center;
+				background-repeat: no-repeat;
+				background-size: contain;
+				position: relative;
+				width: 100%;
+				padding: 4rem 0;
+				margin-bottom: 3rem;
+				overflow: visible;
+			}
+			@media (min-width:768px) { 
+				.eventyrcards-wrapper { 
+					padding: 6rem 0;
+					margin-bottom: 4rem;
+				} 
+			}
+			@media (min-width:1024px) { 
+				.eventyrcards-wrapper { 
+					padding: 8rem 0;
+					margin-bottom: 5rem;
+				} 
+			}
+
+			.eventyrcards-section { 
+				background-color: #C4B5D8; /* purple */
+				overflow: visible;
+				padding: 3rem 0;
+				box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+			}
+
+			.eventyrcards-title {
+				letter-spacing: 2px;
+				color: #C4B5D8;
+				position: absolute;
+				left: 1.5rem;
+				top: -1.7rem;
+				z-index: 40;
+				white-space: nowrap;
+				display: inline-block;
+				max-width: calc(100vw - 2rem);
+				font-size: clamp(1.25rem, 6.5vw, 2rem);
+			}
+			@media (min-width:768px) { 
+				.eventyrcards-title { 
+					left: 3rem;
+					top: -1.7rem; 
+				} 
+			}
+			@media (min-width:1024px) { 
+				.eventyrcards-title { 
+					top: -3.6rem; 
+					font-size: 4rem; 
+				} 
+			}
+
+			.eventyr-grid {
+				display: grid;
+				grid-template-columns: repeat(12, 1fr);
+				gap: 0;
+				align-items: center;
+				width: 100vw;
+			}
+
+			.eventyr-popcorn-cell {
+				grid-column: 1 / 3;
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+				position: relative;
+				z-index: 10;
+			}
+
+			.eventyr-popcorn-img {
+				width: 100%;
+				height: auto;
+				min-width: 180px;
+				max-width: 350px;
+			}
+			@media (min-width:768px) { 
+				.eventyr-popcorn-img { 
+					min-width: 220px;
+				} 
+			}
+			@media (min-width:1024px) { 
+				.eventyr-popcorn-img { 
+					min-width: 280px;
+				} 
+			}
+
+			.eventyr-carousel-cell {
+				grid-column: 3 / 13;
+				position: relative;
+			}
+
+			.eventyr-carousel-wrapper {
+				position: relative;
+			}
+
+			.eventyr-carousel {
+				display: flex;
+				gap: 2rem;
+				overflow-x: auto;
+				scroll-snap-type: x mandatory;
+				scroll-behavior: smooth;
+				-webkit-overflow-scrolling: touch;
+				scrollbar-width: none;
+				-ms-overflow-style: none;
+				padding: 1rem 2rem 1rem 1rem;
+			}
+
+			.eventyr-carousel::-webkit-scrollbar {
+				display: none;
+			}
+
+			.eventyr-carousel-item {
 				flex: 0 0 auto;
 				scroll-snap-align: center;
 			}
