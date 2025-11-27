@@ -1,22 +1,6 @@
 ---
-// Henter parametrene fra Astro.props
-const { htmlheading="h2", size="medium", font="sans", stylingclasses=""} = Astro.props; 
-const Htmlheading = htmlheading;
- 
-//Definer den styling (Tailwind classes), der gør sig gældende for de forskellige størrelser.
-const sizeClasses = {
-"large": "text-3xl lg:text-6xl",
-"medium": "text-2xl lg:text-3xl",
-"small": "text-xl",
-};
-
-//Definer den styling (Tailwind classes), der gør sig gældende for de forskellige skrifttyper.
-const fontClasses = {
-"display": "font-display",
-"sans": "font-sans",
-"serif": "font-serif",
-};
+const { level = "2", stylingclasses = "" } = Astro.props;
 ---
-// If this component renders an <h2>, skip local text-size classes so global h2 sizing applies.
-const appliedSize = Htmlheading === 'h2' ? '' : sizeClasses[size];
-<Htmlheading class:list={[stylingclasses, fontClasses[font]]}><slot /></Htmlheading>
+
+{level === "2" && <h2 class={stylingclasses}><slot /></h2>}
+{level === "3" && <h3 class={stylingclasses}><slot /></h3>}

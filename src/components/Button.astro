@@ -1,22 +1,42 @@
 ---
-// Henter parametrene fra Astro.props
-const { variant= "primary", size = "medium" } = Astro.props; 
- 
-//Definer den styling (Tailwind classes, der gør sig gældende for alle knapper)
-const buttonStyling = "border-2 px-16 py-4"; 
- 
-//Definer den styling (Tailwind classes), der gør sig gældende for de forskellige varianter 
-const variantClasses = {
-"primary": "border-black hover:bg-black hover:text-white hover:-skew-x-12 transition-all duration-700", /* border-primary-500 */
-"secondary": "border-blue-500 hover:bg-blue-500 hover:border-blue-200" /* border-secondary-500 */
-};
- 
-//Definer den styling (Tailwind classes), der gør sig gældende for de forskelligeog størrelser.
+const { variant = "primary", size = "medium", href, ariaLabel } = Astro.props;
+
+const baseClasses = "inline-flex items-center gap-2 bg-blaa text-white rounded-full transition-all duration-300 hover:translate-x-1 hover:-translate-y-1 font-heading";
+
+// Responsive size classes: small (mobile), medium (tablet), large (desktop)
 const sizeClasses = {
-"large": "text-4xl",
-"medium": "text-xl",
-"small": "text-large"
+  "small": "px-4 h-10",
+  "medium": "px-5 h-12",
+  "large": "px-6 h-14"
 };
+
+// Compose responsive sizing so buttons are small on mobile, medium on tablet, large on desktop
+const responsiveSize = "px-4 h-10 md:px-5 md:h-12 lg:px-6 lg:h-14";
 ---
-<!--Sæt classes for den pågældende knap sammen ved hjælp af Astros class:list -->
-<button class:list={[buttonStyling, variantClasses[variant], sizeClasses[size]]}><slot /></button>
+
+{href ? (
+  <a 
+    href={href} 
+    class:list={[baseClasses, responsiveSize]} 
+    style="box-shadow: 0 0 0 transparent; --hover-shadow: -4px 4px 0 #3A9DB5;"
+    onmouseenter="this.style.boxShadow=this.style.getPropertyValue('--hover-shadow')"
+    onmouseleave="this.style.boxShadow='0 0 0 transparent'"
+  >
+    <span class="inline-flex items-center gap-2 lg:text-[15px] md:text-[10px] text-[8px] leading-none">
+      <slot />
+    </span>
+  </a>
+) : (
+  <button 
+    type="button"
+    aria-label={ariaLabel}
+    class:list={[baseClasses, responsiveSize]} 
+    style="box-shadow: 0 0 0 transparent; --hover-shadow: -4px 4px 0 #3A9DB5;"
+    onmouseenter="this.style.boxShadow=this.style.getPropertyValue('--hover-shadow')"
+    onmouseleave="this.style.boxShadow='0 0 0 transparent'"
+  >
+    <span class="inline-flex items-center gap-2 lg:text-[15px] md:text-[10px] text-[8px] leading-none">
+      <slot />
+    </span>
+  </button>
+)}
