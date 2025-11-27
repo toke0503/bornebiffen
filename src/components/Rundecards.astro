@@ -8,27 +8,39 @@ import Lillefinger from '../assets/images/lillefinger.png?url';
 import Raeven from '../assets/images/raeven.png?url';
 ---
 
-<section class="rundecards-section relative w-full overflow-hidden">
-  <img src={BaggrundSky} alt="baggrund" class="absolute left-0 top-0 opacity-40 pointer-events-none w-64 md:w-96" />
-  <div class="container mx-auto px-6 md:px-12 py-14 md:py-20">
-    <h2 class="font-heading text-center text-blaa mb-8">Se dine yndlingskarakterer</h2>
+<div class="rundecards-wrapper" style={`background-image: url(${BaggrundSky})`}>
+  <section class="rundecards-section relative w-full overflow-hidden">
+    <div class="container mx-auto px-6 md:px-12 py-14 md:py-20">
+      <h2 class="font-heading text-center text-blaa mb-8">Se dine yndlingskarakterer</h2>
 
-    <div class="cards-row relative">
-      <div class="carousel flex gap-8 items-center overflow-x-auto no-scrollbar py-4 px-2">
-        <RundeCard title="Vitello" img={Vitello} />
-        <RundeCard title="Pipungerne" img={Pip} />
-        <RundeCard title="Lillefinger" img={Lillefinger} />
-        <RundeCard title="Ræven" img={Raeven} />
+      <div class="cards-row relative">
+        <div class="carousel flex gap-8 items-center overflow-x-auto no-scrollbar py-4 px-2">
+          <RundeCard title="Vitello" img={Vitello} />
+          <RundeCard title="Pipungerne" img={Pip} />
+          <RundeCard title="Lillefinger" img={Lillefinger} />
+          <RundeCard title="Ræven" img={Raeven} />
+        </div>
       </div>
     </div>
-  </div>
 
-  <img src={BlaaPopkorn} alt="blaa popcorn" class="absolute right-8 bottom-4 w-16 md:w-24 opacity-90 pointer-events-none" />
+    <img src={BlaaPopkorn} alt="blaa popcorn" class="absolute right-8 bottom-4 w-16 md:w-24 opacity-90 pointer-events-none" />
+  </section>
+</div>
 
-  <style>
-    .rundecards-section { background-color: transparent; }
-    .cards-row .carousel { -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-  </style>
-</section>
+<style>
+  .rundecards-wrapper {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    width: 100%;
+  }
+
+  .rundecards-section { 
+    background-color: rgb(0, 183, 235); /* cyan */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+  }
+  .cards-row .carousel { -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>

@@ -27,71 +27,158 @@ const placeholders = Array.from({ length: 12 }, (_, i) => cards[i % cards.length
 ---
 <MainLayout title="Titel">
 	<Hero />
-	<section class="rundecards-section relative w-full overflow-visible bg-blaa mt-25 md:mt-50 lg:mt-50">
-	<div class="max-w-screen-xl mx-auto px-6 md:px-12 py-6 md:py-10 relative">
-		<h2 class="rundecards-title font-heading">SE DINE YNDLINGSKARAKTERER</h2>
+	<div class="rundecards-wrapper" style={`background-image: url(${BaggrundSky})`}>
+		<section class="rundecards-section relative w-full bg-blaa mt-25 md:mt-50 lg:mt-50">
+				<h2 class="rundecards-title font-heading">SE DINE YNDLINGSKARAKTERER</h2>
 
-	    <div class="cards-row relative">
-				<div class="carousel flex gap-8 items-center justify-start no-scrollbar py-4 px-3">
-				{placeholders.map((c) => (
-					<div class="carousel-item">
-						<RundeCard title={c.title} img={c.img} bg={c.bg} />
+			<!-- 12-column grid container (full viewport width) -->
+			<div class="cards-grid">
+				<!-- Popcorn: columns 1-2 -->
+				<div class="popcorn-cell">
+					<img src={BlaaPopkorn} alt="Blå popcorn" class="popcorn-img" />
+				</div>
+
+				<!-- Carousel: columns 3-12 -->
+				<div class="carousel-cell">
+					<div class="carousel-wrapper">
+						<div class="carousel">
+							{placeholders.map((card) => (
+								<div class="carousel-item">
+									<RundeCard title={card.title} img={card.img} bg={card.bg} />
+								</div>
+							))}
+						</div>
 					</div>
-				))}
+				</div>
 			</div>
-	    </div>
-	  </div>
+		</div>
+	</section>
+	</div>
 
-	<img src={BlaaPopkorn} alt="blaa popcorn" class="blaapopkorn-left" />
+		<style>
+			.rundecards-wrapper {
+				background-position: start end;
+				background-repeat: no-repeat;
+				background-size: contain;
+				position: relative;
+				width: 100%;
+				padding: 4rem 0;
+				margin-bottom: 3rem;
+			}
+			@media (min-width:768px) { 
+				.rundecards-wrapper { 
+					padding: 6rem 0;
+					margin-bottom: 4rem;
+				} 
+			}
+			@media (min-width:1024px) { 
+				.rundecards-wrapper { 
+					padding: 8rem 0;
+					margin-bottom: 5rem;
+				} 
+			}
 
-	  <style>
-	    .rundecards-section { background-color: var(--color-blaa); }
-		/* headline sits above the strip, left-aligned to the container, non-wrapping
-		   Make the title responsive so it won't be clipped on small viewports. */
-		.rundecards-title {
-		  letter-spacing: 2px;
-		  color: var(--color-blaa);
-		  position: absolute;
-		  left: 0.75rem; /* respect container padding */
-		  transform: none;
-		  top: -1.7rem;
-		  z-index: 40;
-		  white-space: nowrap;
-		  display: inline-block;
-		  max-width: calc(100vw - 2rem);
-		  overflow: visible;
-		  /* clamp between 1.25rem (20px) and 2rem (32px) on small/medium, up to 4rem on large */
-		  font-size: clamp(1.25rem, 6.5vw, 2rem);
-		}
-		@media (min-width:768px) { .rundecards-title { top: -1.7rem; } }
-		@media (min-width:1024px) { .rundecards-title { top: -3.6rem; font-size: 4rem; } }
-		.cards-row .carousel { -webkit-overflow-scrolling: touch; scroll-behavior: smooth; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; }
-		.cards-row .carousel-item { scroll-snap-align: center; flex: 0 0 auto; }
+			.rundecards-section { 
+				background-color: var(--color-blaa);
+				overflow: visible;
+				padding: 2rem 0;
+				box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+			}
 
-	    /* Position the blue popcorn decoration on the left, responsive and partly off-canvas */
-		.blaapopkorn-left {
-			position: absolute;
-			/* align to the left edge of the positioned ancestor */
-			left: 0;
-			bottom: -0.5rem;
-			width: 12rem;
-			opacity: 0.98;
-			pointer-events: none;
-			z-index: 20;
-			transition: width 200ms ease;
-		}
-		@media (min-width: 640px) {
-			.blaapopkorn-left { width: 12rem; }
-		}
-		@media (min-width: 768px) {
-			.blaapopkorn-left { bottom: -2rem; width: 16rem; }
-		}
-		@media (min-width: 1024px) {
-			.blaapopkorn-left { bottom:0rem; width: 16rem; }
-		}
-	    .no-scrollbar::-webkit-scrollbar { display: none; }
-	    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-	  </style>
+			.rundecards-title {
+				letter-spacing: 2px;
+				color: var(--color-blaa);
+				position: absolute;
+				left: 1.5rem;
+				top: -1.7rem;
+				z-index: 40;
+				white-space: nowrap;
+				display: inline-block;
+				max-width: calc(100vw - 2rem);
+				font-size: clamp(1.25rem, 6.5vw, 2rem);
+			}
+			@media (min-width:768px) { 
+				.rundecards-title { 
+					left: 3rem;
+					top: -1.7rem; 
+				} 
+			}
+			@media (min-width:1024px) { 
+				.rundecards-title { 
+					top: -3.6rem; 
+					font-size: 4rem; 
+				} 
+			}
+
+			/* 12-column grid - full viewport width */
+			.cards-grid {
+				display: grid;
+				grid-template-columns: repeat(12, 1fr);
+				gap: 0;
+				align-items: center;
+				width: 100vw;
+			}
+
+			/* Popcorn occupies columns 1-2 */
+			.popcorn-cell {
+				grid-column: 1 / 3;
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+				position: relative;
+				z-index: 10;
+			}
+
+			.popcorn-img {
+				width: 100%;
+				height: auto;
+				min-width: 180px;
+				max-width: 350px;
+			}
+			@media (min-width:768px) { 
+				.popcorn-img { 
+					min-width: 220px;
+				} 
+			}
+			@media (min-width:1024px) { 
+				.popcorn-img { 
+					min-width: 280px;
+				} 
+			}
+
+			/* Carousel occupies columns 3-12 */
+			.carousel-cell {
+				grid-column: 3 / 13;
+				position: relative;
+			}
+
+			/* Carousel wrapper - no extra margins needed, grid handles full width */
+			.carousel-wrapper {
+				position: relative;
+			}
+
+			/* Scrollable carousel */
+			.carousel {
+				display: flex;
+				gap: 2rem;
+				overflow-x: auto;
+				scroll-snap-type: x mandatory;
+				scroll-behavior: smooth;
+				-webkit-overflow-scrolling: touch;
+				scrollbar-width: none;
+				-ms-overflow-style: none;
+				padding: 1rem 2rem 1rem 1rem;
+			}
+
+			.carousel::-webkit-scrollbar {
+				display: none;
+			}
+
+			.carousel-item {
+				flex: 0 0 auto;
+				scroll-snap-align: center;
+			}
+		</style>
 	</section>
 	<main class="container mx-auto p-4">
 	</main>
